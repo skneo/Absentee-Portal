@@ -73,7 +73,7 @@ if (!isset($_SESSION['adminloggedin'])) {
     }
     ?>
     <div class='container my-3'>
-        <h4>Add Secion</h4>
+        <h4>Add Section</h4>
         <form method='POST' action=''>
             <div class='mb-3'>
                 <label for='sectionName' class='form-label float-start'>Section Name (in lower case)</label>
@@ -82,7 +82,7 @@ if (!isset($_SESSION['adminloggedin'])) {
             <button type='submit' onclick="return confirm('Sure to add new section?')" class='btn btn-primary'>Submit</button>
         </form>
         <hr>
-        <h4>Delete Secion</h4>
+        <h4>Delete Section</h4>
         <form method='POST' action=''>
             <div class='mb-3'>
                 <label for='deleteSection' class='form-label float-start'>Section Name (in lower case)</label>
