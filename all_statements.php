@@ -219,7 +219,7 @@ function validateInput($data)
             <table id="table_id" class="table-bordered w-100 text-center">
                 <tr>
                     <td colspan='11' class='text-center fw-bold'>
-                        <h5></h5><?php echo ucfirst($section) ?> Section Khyberpass Depot</h5>
+                        <h5></h5><?php echo strtoupper($section) ?> Section Khyberpass Depot</h5>
                     </td>
                 </tr>
                 <tr>
