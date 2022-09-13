@@ -26,11 +26,15 @@
                 <?php
                 $lockStatus = file_get_contents("lockStatus.json");
                 $lockStatus = json_decode($lockStatus, true);
+                $totalEmployees = 0;
                 foreach (glob('./*', GLOB_ONLYDIR) as $dir) {
                     $dirname = basename($dir);
                     if ($dirname == '__MACOSX' || $dirname == 'zip_files')
                         continue;
                     $displayDir = strtoupper(($dirname));
+                    $employees = file_get_contents("$dirname/employees.json");
+                    $employees = json_decode($employees, true);
+                    $totalEmployees = $totalEmployees + count($employees);
                     $btnClass = 'btn-outline-primary';
                     if (array_key_exists($dirname, $lockStatus)) {
                         if ($lockStatus[$dirname] == 1) {
@@ -40,18 +44,16 @@
                     }
                     echo "<a href='fill_leaves.php?section=$dirname' class='mb-3 btn $btnClass w-100'>$displayDir</a><br>";
                 }
-                // $path    = './';
-                // $files = scandir($path);
-                // $files = array_diff(scandir($path), array('.', '..', 'index.php'));
-                // foreach ($files as $file) {
-                //     $fileUpper = strtoupper($file);
-                //     echo "<a href='$file' class='mb-3 btn btn-primary'>$fileUpper</a><br>";
-                // }
                 ?>
             </div>
+            <?php
+            echo "Total Employees: $totalEmployees (including ADMIN and TEST section)";
+            ?>
         </center>
     </div>
-
+    <div class="text-center bg-dark text-light py-3">
+        Developer: satishkushwahdigital@gmail.com
+    </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous'></script>
 </body>
