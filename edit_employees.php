@@ -1,7 +1,8 @@
 <?php
 $section = $_GET['section'];
 session_start();
-if (!((isset($_SESSION['adminloggedin']) or isset($_SESSION[$section . 'loggedin'] )))) {
+//if (!((isset($_SESSION['adminloggedin']) or isset($_SESSION[$section . 'loggedin'] )))) {
+if (!((isset($_SESSION['adminloggedin']) ))) {
     header("Location: all_statements.php?section=$section");
 }
 $lockStatus = file_get_contents("lockStatus.json");
