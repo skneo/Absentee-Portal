@@ -25,11 +25,11 @@
                     <a class='nav-link active ' aria-current='page' href='export_all_sections.php?section=$section'>Export All Sections</a>
                 </li>";
                 }
-                else if (isset($_SESSION[$section . 'loggedin'])) {
-                    echo "<li class='nav-item'>
-                    <a class='nav-link active ' aria-current='page' href='edit_employees.php?section=$section'>Edit Employees</a>
-                    </li>";
-                }
+//                 else if (isset($_SESSION[$section . 'loggedin'])) {
+//                     echo "<li class='nav-item'>
+//                     <a class='nav-link active ' aria-current='page' href='edit_employees.php?section=$section'>Edit Employees</a>
+//                     </li>";
+//                 }
                 ?>
                 <li class='nav-item'>
                     <a class='nav-link active ' aria-current='page' href='help.php?section=<?php echo $section ?>'>Help</a>
