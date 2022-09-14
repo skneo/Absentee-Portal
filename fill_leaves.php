@@ -127,8 +127,15 @@ $section = $_GET['section'];
                 <div class='text-danger' id='fileErrror' style="display:none ;">File size is greater than 1 Mb</div>
                 <div class='form-text text-muted'>स्क्रीनशॉट Crop करके अपलोड करें जिसमें सिर्फ आपका नाम और अप्लाई की हुई छुट्टियाँ ही दिखें <a target='_blank' href='sample.jpg'>( सैंपल देखें ) </a></div>
             </div>
-            <button type='submit' class='btn btn-primary' id='submitBtn' onclick="return confirm('Sure to submit?')" disabled=true>Submit</button>
+            <center>
+                <button type='submit' class='btn btn-primary px-5' id='submitBtn' onclick="showLoader(); return confirm('Sure to submit?') " disabled=true>Submit</button>
+            </center>
         </form>
+        <div class="d-flex justify-content-center my-3 d-none" id="pageLoader">
+            <div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
         <script>
             function validateFile() {
                 let fileSize = document.getElementById('fileToUpload').files[0].size / (1024);
@@ -139,6 +146,10 @@ $section = $_GET['section'];
                     document.getElementById("submitBtn").disabled = true;
                     document.getElementById("fileErrror").style.display = "block";
                 }
+            }
+
+            function showLoader() {
+                document.getElementById('pageLoader').classList.remove('d-none');
             }
         </script>
     </div>
