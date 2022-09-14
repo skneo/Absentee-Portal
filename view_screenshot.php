@@ -39,7 +39,7 @@ session_start();
                 <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>";
             echo "<a href='fill_leaves.php?section=$section' class='ms-5 my-3 btn btn-primary me-5'>
-            <- Back</a>";
+            &larr; Back</a>";
             exit;
         }
     }
@@ -52,27 +52,27 @@ session_start();
         $temp = explode(".", $_FILES["fileToUpload"]["name"]);
         $newfilename = $emp_num . "-$timeStamp." . end($temp);
         $target_file = "$section/uploads/" . $newfilename;
-        // $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        //check file type
-        // if ($file_type == 'htm' or $file_type == 'html' or $file_type == 'php' or $file_type == 'asp' or $file_type == 'aspx' or $file_type == 'jsp' or $file_type == 'htaccess') {
-        //     $showAlert = true;
-        //     $alertMsg =  "Sorry, this file type not allowed, upload it by making zip file.";
-        //     $alertClass = "alert-danger";
-        // }
+        $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        // check file type
+        if (!($file_type == 'jpg' or $file_type == 'jpeg' or $file_type == 'png')) {
+            echo "<div class='alert alert-danger alert-dismissible fade show py-2 mb-0' role='alert'>
+                <strong >Error, only .jpg , .jpeg and .png files are allowed to upload ! </strong>
+                <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>";
+            echo "<a href='fill_leaves.php?section=$section' class='btn btn-primary mt-3 ms-3'>&larr; Back</a>";
+            exit();
+        }
         // Check if file already exists
-        if (file_exists($target_file)) {
+        else if (file_exists($target_file)) {
             echo "<div class='alert alert-danger alert-dismissible fade show py-2 mb-0' role='alert'>
                 <strong >Error! $target_file already exists </strong>
                 <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>";
+            echo "<a href='fill_leaves.php?section=$section' class='btn btn-primary mt-3 ms-3'>&larr; Back</a>";
+            exit();
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $filename = htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
-                //     echo "<div class='alert alert-success alert-dismissible fade show py-2 mb-0' role='alert'>
-                //     <strong >File $filename has been uploaded</strong>
-                //     <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
-                // </div>";
-
                 $absentee = file_get_contents("$section/absentee.json");
                 $absentee = json_decode($absentee, true);
                 if ($absentee == NULL)
@@ -180,7 +180,7 @@ session_start();
     }
     ?>
     <div class='container mb-5'>
-        <a href="all_statements.php?section=<?php echo $section ?>" class="btn btn-primary btn-sm">&larr; Back</a>
+        <a href="all_statements.php?section=<?php echo $section ?>" class="btn btn-primary btn-sm mt-2">&larr; Back</a>
         <?php
         echo "<p class='mt-2'><b>Employee Name:</b> $emp_name <br> <b> Employee Number:</b> $emp_num</p>";
         ?>
@@ -256,9 +256,11 @@ session_start();
                         </div>
                     </div>";
             } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                echo "<form method='POST' action='all_statements.php?section=$section'>
+                echo "<p> If your data is not correct, delete it from below button and fill again. If data is correct you can close this tab </p>
+                    <form method='POST' action='all_statements.php?section=$section'>
                     <button type='submit' onclick=\"return confirm('Sure to delete leave statement of \'$emp_name\'?')\" class='btn btn-danger' name='delete' value='$emp_num'>Delete </button>
-                    </form>";
+                    </form>
+                    ";
             } else if ($lock == 1) {
                 echo "<p class='text-danger'>Data is locked</p>";
                 // $_SESSION['sectionLock'] = true;

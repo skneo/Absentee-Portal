@@ -122,12 +122,25 @@ $section = $_GET['section'];
                 </script>
             </div>
             <div class='mb-3'>
-                <label for='fileToUpload' class='form-label float-start'>ESS Screenshot <div class="form-text text-muted"> अगर आपने कोई छुट्टी नहीं ली फिर भी ESS का स्क्रीनशॉट अपलोड करें </div></label>
-                <input type='file' class='form-control' id='fileToUpload' name='fileToUpload' required>
+                <label for='fileToUpload' class='form-label float-start'>ESS Screenshot (size less than 1 Mb) <div class="form-text text-muted"> अगर आपने कोई छुट्टी नहीं ली फिर भी ESS का स्क्रीनशॉट अपलोड करें </div></label>
+                <input type='file' class='form-control' id='fileToUpload' name='fileToUpload' required onchange="validateFile()">
+                <div class='text-danger' id='fileErrror' style="display:none ;">File size is greater than 1 Mb</div>
                 <div class='form-text text-muted'>स्क्रीनशॉट Crop करके अपलोड करें जिसमें सिर्फ आपका नाम और अप्लाई की हुई छुट्टियाँ ही दिखें <a target='_blank' href='sample.jpg'>( सैंपल देखें ) </a></div>
             </div>
-            <button type='submit' class='btn btn-primary ' onclick="return confirm('Sure to submit?')">Submit</button>
+            <button type='submit' class='btn btn-primary' id='submitBtn' onclick="return confirm('Sure to submit?')" disabled=true>Submit</button>
         </form>
+        <script>
+            function validateFile() {
+                let fileSize = document.getElementById('fileToUpload').files[0].size / (1024);
+                if (fileSize < 1024) {
+                    document.getElementById("submitBtn").disabled = false;
+                    document.getElementById("fileErrror").style.display = "none";
+                } else {
+                    document.getElementById("submitBtn").disabled = true;
+                    document.getElementById("fileErrror").style.display = "block";
+                }
+            }
+        </script>
     </div>
     <div class="text-center bg-dark text-light py-3 mt-5" style="margin-bottom: -300px;">
         Developer: satishkushwahdigital@gmail.com
