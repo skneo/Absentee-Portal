@@ -10,7 +10,9 @@ include "$section/password.php";
 if (isset($_POST['password'])) {
     if ($_POST['password'] == $password) {
         $_SESSION[$section . 'loggedin'] = true;
-        header("Location: all_statements.php?section=$section");
+        if ($section == 'admin') {
+            header("Location: fill_leaves.php?section=admin");
+        } else header("Location: all_statements.php?section=$section");
     } else {
         $showAlert = true;
         $alertClass = "alert-danger";

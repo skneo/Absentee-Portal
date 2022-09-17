@@ -20,6 +20,32 @@ $section = $_GET['section'];
 <body>
     <?php
     include 'header.php';
+    if ($section == 'admin') {
+        $deletedFiles = 0;
+        date_default_timezone_set('Asia/Kolkata');
+        if ($handle = opendir("zip_files")) {
+            while (false !== ($file = readdir($handle))) {
+                if ($file != "." && $file != "..") {
+                    if ($file == "index.php")
+                        continue;
+                    $ctime = filectime("zip_files/$file");
+                    $fileDate = date("Y-m-d", $ctime);
+                    $currentDate = date("Y-m-d");
+                    $fileDeleteDate = date('Y-m-d', strtotime($fileDate . ' + 120 days'));
+                    if ($fileDeleteDate < $currentDate) {
+                        $filePath = "zip_files/$file";
+                        unlink($filePath);
+                        $deletedFiles = $deletedFiles + 1;
+                    }
+                }
+            }
+        }
+        if ($deletedFiles)
+            echo "<div class='alert alert-success alert-dismissible fade show py-2 mb-2' role='alert'>
+                <strong >$deletedFiles files older than 120 days deleted from Old Data</strong>
+                <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>";
+    }
     ?>
     <div class='alert alert-info alert-dismissible fade show py-2 mb-2' role='alert'>
         <strong>स्क्रीनशॉट Crop करके ही अपलोड करें <a target='_blank' href="sample.jpg">( सैंपल देखें )</a></strong>
