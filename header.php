@@ -20,10 +20,7 @@
                 if (isset($_SESSION['adminloggedin'])) {
                     echo "<li class='nav-item'>
                     <a class='nav-link active ' aria-current='page' href='edit_employees.php?section=$section'>Edit Employees</a>
-                    </li>
-                    <li class='nav-item'>
-                    <a class='nav-link active ' aria-current='page' href='export_all_sections.php?section=$section'>Export All Sections</a>
-                </li>";
+                    </li>";
                 }
 //                 else if (isset($_SESSION[$section . 'loggedin'])) {
 //                     echo "<li class='nav-item'>
@@ -37,20 +34,20 @@
             </ul>
             <?php
             if (isset($_SESSION['adminloggedin'])) {
-                // echo "<a href='unlock.php?section=$section' class='btn btn-primary me-3' >Lock/Unlock Data</a>";
                 echo "<div class='btn-group '>
                         <button id='userMenu' type='button' class='btn btn-success dropdown-toggle mx-3' data-bs-toggle='dropdown' aria-expanded='false' value=''>
                         Admin Menu
                         </button>
                         <ul class='dropdown-menu dropdown-menu-lg-end'>
-                        <li><a class='dropdown-item ' href='delete_statements.php?section=$section'>Delete Absentee Data</a></li>
-                        <li><a class='dropdown-item ' href='change_approvers.php?section=$section'>Change Approvers</a></li>
-                        <li><a href='unlock.php?section=$section' class='dropdown-item' >Lock/Unlock Data</a></li>
-                        <li><a href='reset_password.php?section=$section' class='dropdown-item' >Reset others's Password</a></li>
-                        <li><a href='all_screenshots.php?section=$section' class='dropdown-item'>Old Data</a></li>
-                        <li><a class='dropdown-item ' href='add_delete_section.php?section=$section'>Add/Delete Section</a></li>
-                        <li><a class='dropdown-item ' href='notifications.php?section=$section'>Enable Notifications</a></li>
-                        <li><a class='dropdown-item ' href='logout.php?section=$section'>Logout Admin</a></li>
+                        <li><a class='dropdown-item ' href='export_all_sections.php?section=admin'>Export All Sections</a></li>
+                        <li><a href='unlock.php?section=admin' class='dropdown-item' >Lock/Unlock Data</a></li>
+                        <li><a class='dropdown-item ' href='delete_statements.php?section=admin'>Delete Absentee Data</a></li>
+                        <li><a href='all_screenshots.php?section=admin' class='dropdown-item'>Old Data</a></li>
+                        <li><a class='dropdown-item ' href='change_approvers.php?section=admin'>Change Approvers</a></li>
+                        <li><a href='reset_password.php?section=admin' class='dropdown-item' >Reset others's Password</a></li>
+                        <li><a class='dropdown-item ' href='add_delete_section.php?section=admin'>Add/Delete Section</a></li>
+                        <li><a class='dropdown-item ' href='notifications.php?section=admin'>Enable Notifications</a></li>
+                        <li><a class='dropdown-item ' href='logout.php?section=admin'>Logout Admin</a></li>
                         </ul>
                         </div>";
             }
