@@ -248,7 +248,7 @@ function validateInput($data)
                     <th>Approved</th>
                     <th>No of Days</th>
                     <th>Approving Authority Name</th>
-                    <th>ESS Screenshot</th>
+                    <th>View/Verify Data</th>
                 </tr>
                 <!--</thead>-->
                 <tbody>
@@ -305,7 +305,7 @@ function validateInput($data)
 
                                 if ($j == 0)
                                     echo "<td rowspan='$total_slots'>$officerName</td>
-                                          <td rowspan='$total_slots'><a href='$file_path'>View</a></td>";
+                                          <td rowspan='$total_slots'><a href='$file_path'>View/Verify</a></td>";
                                 echo "</tr>";
                             }
                             if ($total_slots == 0) {
@@ -320,7 +320,7 @@ function validateInput($data)
                                       <td>NIL</td>
                                       <td>NIL</td>
                                       <td>$officerName</td>
-                                      <td><a href='$file_path'>View</a></td>";
+                                      <td><a href='$file_path'>View/Verify</a></td>";
                                 echo "</tr>";
                             }
                             $sn = $sn + 1;
@@ -335,6 +335,7 @@ function validateInput($data)
             <a href="zip_screenshots.php?section=<?php echo $section ?>" class="my-3 btn btn-primary">Download All Screenshots</a>
         </div>
         <?php
+        $dataSubmitted = 0;
         if ($enableLock == 1 and count($not_submitted) == 0) {
             $lock = 0;
             $lockStatus = file_get_contents("lockStatus.json");
@@ -348,8 +349,11 @@ function validateInput($data)
                 echo "<div class='alert alert-info' role='alert'>
                             <strong >Data submitted and locked by section incharge " . strtoupper($inchargeName) . " ($inchargeEmpNo)  </strong>
                         </div>";
+                $dataSubmitted = 1;
             }
         }
+        if ($dataSubmitted == 0) echo "<p><b>Note: </b> Data not submitted to HR</p>";
+        if ($enableLock == 0) echo "<p><b>Note: </b> Some entries needs verification</p>";
         if ($enableLock == 1 and count($not_submitted) == 0 and isset($_SESSION[$section . 'loggedin']) and $lock == 0) {
             $inchargeName = $approvers['inchargeName'];
             $inchargeEmpNo = $approvers['inchargeEmpNo'];
@@ -375,6 +379,7 @@ function validateInput($data)
                 <b>Employee Number:</b> $inchargeEmpNo 
                 ";
         }
+
         ?>
         <!-- leave statement not submitted  -->
         <div class="my-3">
