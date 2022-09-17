@@ -353,7 +353,7 @@ function validateInput($data)
             }
         }
         if ($dataSubmitted == 0) echo "<p><b>Note: </b> Data not submitted to HR</p>";
-        if ($enableLock == 0) echo "<p><b>Note: </b> Some entries needs verification</p>";
+        if ($enableLock == 0) echo "<p><b>Note: </b>Entries shown with black fonts needs verification</p>";
         if ($enableLock == 1 and count($not_submitted) == 0 and isset($_SESSION[$section . 'loggedin']) and $lock == 0) {
             $inchargeName = $approvers['inchargeName'];
             $inchargeEmpNo = $approvers['inchargeEmpNo'];
