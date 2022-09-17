@@ -112,7 +112,7 @@ if (isset($_POST['delete'])) {
                     if ($file == "index.php")
                         continue;
                     $ctime = filectime("zip_files/$file");
-                    $dateTime = date("d-m-Y H:i:s", $ctime);
+                    $dateTime = date("Y-m-d H:i:s", $ctime);
                     $filedownload = rawurlencode($file);
                     $size = round(filesize("zip_files/" . $file) / (1024));
                     $emp_num = explode('.', $file)[0];

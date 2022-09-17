@@ -24,11 +24,13 @@ if (!isset($_SESSION['adminloggedin'])) {
     //delete all ststements
     $lockStatus = file_get_contents("lockStatus.json");
     $lockStatus = json_decode($lockStatus, true);
+    $disableBtn = false;
     if (count($lockStatus) != 0) {
         echo "<div class='alert alert-danger alert-dismissible fade show py-2 mb-0' role='alert'>
-                <strong >Unlock all sections before deleting absentee data. </strong>
+                <strong >Unlock all sections before deleting absentee data. Remember to Select Section as 'all' </strong>
                 <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>";
+        $disableBtn = true;
     } else if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_all'])) {
         foreach (glob('./*', GLOB_ONLYDIR) as $dir) {
             $section = basename($dir);
@@ -50,13 +52,13 @@ if (!isset($_SESSION['adminloggedin'])) {
     }
     ?>
     <div class="container my-3">
-        <p class="text-danger fs-5">On clicking 'Delete Absentee Data of All Sections', absentee data of all sections including ESS screenshots will be permanently deleted. Export leave statements and download ESS screenshots before deleting. </p>
+        <p class="text-danger fs-5">On clicking 'Delete Absentee Data of All Sections', absentee data of all sections including ESS screenshots will be permanently deleted. Export leave statements and download ESS screenshots before deleting. Data of those sections who locked their data can be accessed from Old Data link</p>
         <form method='POST'>
             <div class='mb-3'>
                 <!-- <label for='' class='form-label float-start'></label> -->
                 <input type='text' hidden class='form-control' id='delete_all' name='delete_all'>
             </div>
-            <button type='submit' class='btn btn-danger' onclick="return confirm('Sure to delete absentee data?')">Delete Absentee Data of All Sections</button>
+            <button type='submit' class='btn btn-danger' <?php if ($disableBtn) echo "disabled = true" ?> onclick="return confirm('Sure to delete absentee data?')">Delete Absentee Data of All Sections</button>
         </form>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
