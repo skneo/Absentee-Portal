@@ -1,2 +1,2 @@
 <?php
-$password = 'adminPassword';
+$password='admin';

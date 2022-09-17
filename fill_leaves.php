@@ -20,7 +20,7 @@ $section = $_GET['section'];
 <body>
     <?php
     include 'header.php';
-    if ($section == 'admin') {
+    if (isset($_SESSION['adminloggedin'])) {
         $deletedFiles = 0;
         date_default_timezone_set('Asia/Kolkata');
         if ($handle = opendir("zip_files")) {
