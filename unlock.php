@@ -53,7 +53,6 @@ if (isset($_POST['sectionName'])) {
 <body>
     <?php
     include 'header.php';
-
     ?>
     <div class='container my-3'>
         <form method='POST' action=''>
@@ -69,6 +68,7 @@ if (isset($_POST['sectionName'])) {
 
                 <select class='form-select' name='sectionName'>
                     <option>Select</option>
+                    <option>all</option>
                     <?php
                     foreach (glob('./*', GLOB_ONLYDIR) as $dir) {
                         $dirname = basename($dir);
@@ -77,16 +77,14 @@ if (isset($_POST['sectionName'])) {
                         echo "<option>$dirname</option>";
                     }
                     ?>
-                    <option>all</option>
                 </select>
-                <!-- <input type='text' class='form-control' name='sectionName' required> -->
             </div>
             <button type='submit' class='btn btn-primary' onclick="return confirm('Sure to unlock?')">Submit</button>
         </form>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous'></script>
-    
+
 </body>
 
 </html>
