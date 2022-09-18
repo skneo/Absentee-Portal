@@ -47,9 +47,8 @@ $section = $_GET['section'];
             </div>";
     }
     ?>
-    <div class='alert alert-info alert-dismissible fade show py-2 mb-2' role='alert'>
+    <div class='alert alert-info py-2' role='alert'>
         <strong>स्क्रीनशॉट Crop करके ही अपलोड करें <a target='_blank' href="sample.jpg">( सैंपल देखें )</a></strong>
-        <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
     </div>
     <div class="container mb-3">
         <h4>Fill Leave Statement</h4>
