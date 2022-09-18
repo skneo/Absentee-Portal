@@ -201,20 +201,17 @@ function validateInput($data)
     }
     ?>
     <div class="container my-3 mb-5">
-        <div class="d-flex">
-            <h4 class='fw-bold'>Leave statements of all employees</h4>
-            <script>
-                function copyTableLink() {
-                    let tableLink = window.location.href;
-                    navigator.clipboard.writeText(tableLink);
-                    document.getElementById('copyBtn').innerText = 'Copied to clip';
-                    setTimeout(() => {
-                        document.getElementById('copyBtn').innerText = 'Copy Link';
-                    }, 2000);
-                }
-            </script>
-            <button id='copyBtn' onclick="copyTableLink()" class="ms-2 btn btn-outline-primary btn-sm">Copy Link</button>
-        </div>
+        <h4>Leave statements of all employees <span><button id='copyBtn' onclick="copyTableLink()" class="btn btn-outline-primary btn-sm">Copy Link</button></span></h4>
+        <script>
+            function copyTableLink() {
+                let tableLink = window.location.href;
+                navigator.clipboard.writeText(tableLink);
+                document.getElementById('copyBtn').innerText = 'Copied to clip';
+                setTimeout(() => {
+                    document.getElementById('copyBtn').innerText = 'Copy Link';
+                }, 2000);
+            }
+        </script>
         <div class="my-3 table-responsive">
             <table id="table_id" class="table-bordered w-100 text-center">
                 <tr>
