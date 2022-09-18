@@ -249,7 +249,7 @@ session_start();
                 echo "<div class='row mt-3'>
                         <div class='col'>
                             <form method='POST' action='all_statements.php?section=$section'>
-                            <button type='submit' onclick=\"return confirm('Sure to delete leave statement of \'$emp_name\'?')\" class='float-start btn btn-danger' name='delete' value='$emp_num'>Delete </button>
+                            <button type='submit' onclick=\"return confirm('Sure to delete data of \'$emp_name\'?')\" class='float-start btn btn-danger' name='delete' value='$emp_num'>Delete </button>
                             </form>
                         </div>
                         <div class='col'>
@@ -261,7 +261,7 @@ session_start();
             } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<p> If your data is not correct, delete it from below button and fill again. If data is correct you can close this tab </p>
                     <form method='POST' action='all_statements.php?section=$section'>
-                    <button type='submit' onclick=\"return confirm('Sure to delete leave statement of \'$emp_name\'?')\" class='btn btn-danger' name='delete' value='$emp_num'>Delete </button>
+                    <button type='submit' onclick=\"return confirm('Sure to delete data of \'$emp_name\'?')\" class='btn btn-danger' name='delete' value='$emp_num'>Delete </button>
                     </form>
                     ";
             } else if ($lock == 1) {
