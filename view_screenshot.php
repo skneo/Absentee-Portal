@@ -186,7 +186,10 @@ session_start();
         ?>
         <b>ESS Screenshot</b>
         <?php
-        echo "<a href='$section/uploads/$file_path' class='mx-3' download>Download</a>";
+        echo "<a href='$section/uploads/$file_path' class='btn btn-info btn-sm' download><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-download' viewBox='0 0 16 16'>
+            <path d='M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z'></path>
+            <path d='M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z'></path>
+            </svg></a>";
         //checking lock status
         $lock = 0;
         $lockStatus = file_get_contents("lockStatus.json");
@@ -196,7 +199,7 @@ session_start();
         }
 
         if (isset($_SESSION[$section . 'loggedin']) and $lock == 0) {
-            echo "<a href='edit_record.php?section=$section&changeScreenshot=$emp_num'>Change Screenshot</a>";
+            echo "<a href='edit_record.php?section=$section&changeScreenshot=$emp_num' class='btn btn-info btn-sm ms-2'>Change </a>";
         }
         echo "<div style='max-height:800px' class='overflow-auto'> <img src='$section/uploads/$file_path' style='width: 1080px' class='mt-2' alt='ESS Screenshot'></div>";
         ?>
@@ -241,9 +244,9 @@ session_start();
             <?php
 
             if (isset($_SESSION[$section . 'loggedin']) and $lock == 0) {
-                echo "<a href='edit_record.php?section=$section&editTable=$emp_num' class='btn btn-primary mb-3'>Edit Table</a>";
+                echo "<a href='edit_record.php?section=$section&editTable=$emp_num' class='btn btn-info btn-sm mb-3'>Edit Table</a>";
 
-                echo "<div class='row'>
+                echo "<div class='row mt-3'>
                         <div class='col'>
                             <form method='POST' action='all_statements.php?section=$section'>
                             <button type='submit' onclick=\"return confirm('Sure to delete leave statement of \'$emp_name\'?')\" class='float-start btn btn-danger' name='delete' value='$emp_num'>Delete </button>
