@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['adminloggedin'])) {
-    header('Location: ../index.php');
+    header('Location: index.php');
 }
 $section = $_GET['section'];
 
@@ -28,7 +28,7 @@ $section = $_GET['section'];
         return $data;
     }
     if (isset($_POST['resetPassword'])) {
-        $resetPassword = validateInput($_POST['resetPassword']);
+        $resetPassword = strtolower(validateInput($_POST['resetPassword']));
         if (file_exists("$resetPassword")) {
             file_put_contents("$resetPassword/password.php", "<?php\n$" . "password='0000';");
             echo "<div class='alert alert-success alert-dismissible fade show py-2 mb-0' role='alert'>
