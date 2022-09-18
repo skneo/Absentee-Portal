@@ -382,11 +382,10 @@ function validateInput($data)
 
         ?>
         <!-- leave statement not submitted  -->
-        <div class="my-3">
-
+        <div class="my-3" id='notSubmitted'>
             <?php
             if (count($not_submitted) != 0) {
-                echo "<h4 class='text-danger'>Leave statement not submitted by below employees</h4>";
+                echo "<h5 class='text-danger'>Leave statement not submitted by below employees <span><button class='btn btn-outline-primary btn-sm' onclick='copyDivToClipboard()'>Copy Message</button></span></h5>";
                 for ($i = 1; $i <= count($not_submitted); $i++) {
                     $emp = $not_submitted[$i - 1];
                     echo "<b>$i.</b> $emp <br>";
@@ -394,7 +393,17 @@ function validateInput($data)
             }
             ?>
         </div>
-
+        <script>
+            function copyDivToClipboard() {
+                var range = document.createRange();
+                range.selectNode(document.getElementById("notSubmitted"));
+                window.getSelection().removeAllRanges(); // clear current selection
+                window.getSelection().addRange(range); // to select text
+                document.execCommand("copy");
+                window.getSelection().removeAllRanges();// to deselect
+                alert('Message copied to clip')
+            }
+        </script>
     </div>
     <div class="text-center bg-dark text-light py-3 mt-5" style="margin-bottom: -300px;">
         Developer: satishkushwahdigital@gmail.com
