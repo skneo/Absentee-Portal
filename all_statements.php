@@ -173,7 +173,7 @@ function validateInput($data)
         $sectionCap = strtoupper($section);
         $req_data = array(
             'title'         => "Absentee Data locked by $sectionCap section", //required
-            'message'         => "Please find absentee data by clicking on this notification", //required
+            'message'         => "Please find absentee data of $sectionCap by clicking on this notification", //required
             'target_url'    => "https://absentee.techtips.co.in/all_statements.php?section=$section", //required
             //following parameters are optional
             // 'name'		=> 'Test campaign',
@@ -397,7 +397,7 @@ function validateInput($data)
                 window.getSelection().removeAllRanges(); // clear current selection
                 window.getSelection().addRange(range); // to select text
                 document.execCommand("copy");
-                window.getSelection().removeAllRanges();// to deselect
+                window.getSelection().removeAllRanges(); // to deselect
                 alert('Message copied to clip')
             }
         </script>
