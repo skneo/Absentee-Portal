@@ -49,7 +49,7 @@ if (!isset($_SESSION['adminloggedin'])) {
                 </div>";
         }
     } else if (isset($_POST['deleteSection']) && $_POST['deleteSection'] != 'admin' && file_exists($_POST['deleteSection'])) {
-        $deleteSection = validateInput($_POST['deleteSection']);
+        $deleteSection = strtolower(validateInput($_POST['deleteSection']));
         if ($handle = opendir("$deleteSection/uploads/")) {
             while (false !== ($file = readdir($handle))) {
                 if ($file != "." && $file != "..") {
