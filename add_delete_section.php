@@ -33,6 +33,7 @@ if (!isset($_SESSION['adminloggedin'])) {
         if (!file_exists("$sectionName")) {
             mkdir("$sectionName");
             mkdir("$sectionName/uploads");
+            file_put_contents("$sectionName/uploads/index.php", "<?php\nheader('Location: ../index.php');");
             file_put_contents("$sectionName/absentee.json", '{}');
             file_put_contents("$sectionName/approvers.json", '{"officerName":"Bharat Singh","inchargeName":"Ram Kumar","inchargeEmpNo":"12345","inchargeDesig":"SE"}');
             file_put_contents("$sectionName/employees.json", '["21121 - Ram Kumar","32322 - Laxman Das"]');

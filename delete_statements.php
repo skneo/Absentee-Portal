@@ -39,7 +39,7 @@ if (!isset($_SESSION['adminloggedin'])) {
             file_put_contents("$section/absentee.json", "{}");
             if ($handle = opendir("$section/uploads/")) {
                 while (false !== ($file = readdir($handle))) {
-                    if ($file != "." && $file != "..") {
+                    if ($file != "." && $file != ".." && $file != "index.php") {
                         unlink("$section/uploads/$file");
                     }
                 }
