@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div class="bg-dark text-light text-center h3 py-3">Absentee Portal</div>
+    <div class="bg-dark text-light text-center h4 py-3">Absentee Portal</div>
     <div class="container my-3  text-center ">
         <h4>All Sections</h4><br>
         <center>
