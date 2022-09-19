@@ -45,6 +45,7 @@ if (!isset($_SESSION['adminloggedin'])) {
                 }
             }
         }
+        file_put_contents("remarks.json", "{}");
         echo "<div class='alert alert-success alert-dismissible fade show py-2 mb-0' role='alert'>
                 <strong >Absentee data deleted of all sections  </strong>
                 <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>

@@ -78,12 +78,19 @@ function validateInput($data)
     }
     //lock
     else if (isset($_POST['lock'])) {
+        //saving section lock status 
         $lock = $_POST['lock'];
         $lockStatus = file_get_contents("lockStatus.json");
         $lockStatus = json_decode($lockStatus, true);
         $lockStatus[$section] = 1;
-        $_SESSION['sectionLock'] = true;
+        // $_SESSION['sectionLock'] = true;
         file_put_contents("lockStatus.json", json_encode($lockStatus));
+        //saving remark 
+        $remarks = file_get_contents("remarks.json");
+        $remarks = json_decode($remarks, true);
+        $inchargeRemark = $_POST["inchargeRemark"];
+        $remarks[$section] = $inchargeRemark;
+        file_put_contents("remarks.json", json_encode($remarks));
 
         //zipping all screenshots
         date_default_timezone_set('Asia/Kolkata');
@@ -159,7 +166,7 @@ function validateInput($data)
         fclose($fp);
 
         echo "<div class='alert alert-success alert-dismissible fade show py-2 mb-0' role='alert'>
-                <strong >Data Locked successfully, don't forget to Export Table in Excel and Download All Screenshots </strong>
+                <strong >Data locked and submitted, don't forget to Export Table in Excel and Download All Screenshots </strong>
                 <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>";
 
@@ -341,10 +348,17 @@ function validateInput($data)
                 $lock = $lockStatus[$section];
             }
             if ($lock == 1) {
+                $inchargeRemark = 'NA';
+                $remarks = file_get_contents("remarks.json");
+                $remarks = json_decode($remarks, true);
+                if (array_key_exists($section, $remarks)) {
+                    $inchargeRemark = $remarks[$section];
+                }
                 $inchargeName = $approvers['inchargeName'];
                 $inchargeEmpNo = $approvers['inchargeEmpNo'];
-                echo "<div class='alert alert-info' role='alert'>
-                            <strong >Data submitted and locked by section incharge " . strtoupper($inchargeName) . " ($inchargeEmpNo)  </strong>
+                echo "<p><b>Remark: </b>$inchargeRemark</p>
+                        <div class='alert alert-info' role='alert'>
+                            <strong >Data locked and submitted by section incharge " . strtoupper($inchargeName) . " ($inchargeEmpNo)  </strong>
                         </div>";
                 $dataSubmitted = 1;
             }
@@ -361,17 +375,19 @@ function validateInput($data)
                             <p class='text-danger'>I have carefully matched the leave statements and ESS applied leaves of above employees with attendance register. </p>
                         </label>
                     </div>
-                    <script>
-                        function enable_btn() {
-                            var checked = document.getElementById('checkbtn').checked;
-                            if (checked == true)
-                                document.getElementById('submitbtn').disabled = false;
-                            else
-                                document.getElementById('submitbtn').disabled = true;
-                        }
-                    </script>
+                    <label for='inchargeRemark' class='form-label float-start'>Remark</label>
+                    <textarea class='form-control mb-3' id='inchargeRemark' name='inchargeRemark' rows='3'>NA</textarea>
                     <button type='submit' id='submitbtn' disabled name='lock' value='1' class='btn btn-danger' onclick=\"return confirm('After locking you will not be able to edit data, are you sure to lock and submit ?')\">Lock & Submit Data</button>
                 </form> <br>
+                <script>
+                    function enable_btn() {
+                        var checked = document.getElementById('checkbtn').checked;
+                        if (checked == true)
+                            document.getElementById('submitbtn').disabled = false;
+                        else
+                            document.getElementById('submitbtn').disabled = true;
+                    }
+                </script>
                 <b>Section Incharge:</b> $inchargeName <br>
                 <b>Employee Number:</b> $inchargeEmpNo 
                 ";
