@@ -18,9 +18,9 @@
 </head>
 
 <body>
+    <div class="bg-dark text-light text-center h3 py-3">Absentee Portal</div>
     <div class="container my-3  text-center ">
-        <h3 class="text-danger">--- Home ---</h3>
-        <h4>Go to Absentee data of following sections</h4><br>
+        <h4>All Sections</h4><br>
         <center>
             <div class="container col-xs-8 col-md-3">
                 <?php
@@ -59,3 +59,8 @@
 </body>
 
 </html>
+<style>
+    body {
+        background-color: rgb(218, 225, 233);
+    }
+</style>

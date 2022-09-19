@@ -172,8 +172,8 @@ function validateInput($data)
         );
         $sectionCap = strtoupper($section);
         $req_data = array(
-            'title'         => "Absentee Data locked by $sectionCap section", //required
-            'message'         => "Please find absentee data of $sectionCap by clicking on this notification", //required
+            'title'         => "Absentee data submitted by $sectionCap section", //required
+            'message'         => "View absentee data of $sectionCap by clicking on this notification", //required
             'target_url'    => "https://absentee.techtips.co.in/all_statements.php?section=$section", //required
             //following parameters are optional
             // 'name'		=> 'Test campaign',
