@@ -59,7 +59,7 @@ if (isset($_POST['delete'])) {
     <?php
     include 'header.php';
     echo "<div class='alert alert-info py-2' role='alert'>
-        <strong>Files older than 120 days will be deleted automatically</strong>
+        <strong>Files older than 100 days will be deleted automatically</strong>
         </div>";
     if ($showAlert) {
         echo "<div class='alert $alertClass alert-dismissible fade show py-2 mb-0' role='alert'>
