@@ -96,7 +96,7 @@ function validateInput($data)
         date_default_timezone_set('Asia/Kolkata');
         $from = date('16-M-Y', strtotime('-1 month'));
         $to = date("15-M-Y");
-        $zip_name = "zip_files/" . ucfirst($section) . "_ESS_screenshots_$from" . "_to_" . "$to" . ".zip";
+        $zip_name = "zip_files/" . strtoupper($section) . "_ESS_screenshots_$from" . "_to_" . "$to" . ".zip";
         $showAlert = false;
         // Get real path for our folder
         $rootPath = realpath("$section/uploads");
@@ -159,7 +159,7 @@ function validateInput($data)
         date_default_timezone_set('Asia/Kolkata');
         $from = date('16-M-Y', strtotime('-1 month'));
         $to = date("15-M-Y");
-        $fp = fopen("zip_files/" . ucfirst($section) . "_Absentee_$from" . "_to_" . "$to" . ".csv", 'w');
+        $fp = fopen("zip_files/" . strtoupper($section) . "_Absentee_$from" . "_to_" . "$to" . ".csv", 'w');
         foreach ($absenteeArrray as $fields) {
             fputcsv($fp, $fields);
         }
