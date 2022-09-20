@@ -79,7 +79,7 @@ function validateInput($data)
     //lock
     else if (isset($_POST['lock'])) {
         //saving section lock status 
-        $lock = $_POST['lock'];
+        $lock = validateInput($_POST['lock']);
         $lockStatus = file_get_contents("lockStatus.json");
         $lockStatus = json_decode($lockStatus, true);
         $lockStatus[$section] = 1;
@@ -88,7 +88,7 @@ function validateInput($data)
         //saving remark 
         $remarks = file_get_contents("remarks.json");
         $remarks = json_decode($remarks, true);
-        $inchargeRemark = $_POST["inchargeRemark"];
+        $inchargeRemark = validateInput($_POST["inchargeRemark"]);
         $remarks[$section] = $inchargeRemark;
         file_put_contents("remarks.json", json_encode($remarks));
 
