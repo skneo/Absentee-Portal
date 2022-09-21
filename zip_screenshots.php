@@ -5,7 +5,7 @@ $section_name = $section;
 date_default_timezone_set('Asia/Kolkata');
 $from = date('16-M-Y', strtotime('-1 month'));
 $to = date("15-M-Y");
-$zip_name = "zip_files/" . ucfirst($section_name) . "_ESS_screenshots_$from" . "_to_" . "$to" . ".zip";
+$zip_name = "zip_files/" . strtoupper($section_name) . "_ESS_screenshots_$from" . "_to_" . "$to" . ".zip";
 // if (!isset($_SESSION[$section . 'loggedin'])) {
 //     header('Location: index.php');
 // }
