@@ -65,7 +65,7 @@ function validateInput($data)
     }
     //edit employees
     else if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_employees']) && isset($_SESSION['adminloggedin'])) {
-        $edit_employees   =  $_POST['edit_employees'];
+        $edit_employees   =  trim($_POST['edit_employees']);
         $edit_employees = preg_replace('/[\x00-\x09\x0B\x0C\x0E-\x1F\x7F]/', ' ', $edit_employees);
         $edit_employees = preg_split("/\r\n|\n|\r/", $edit_employees);
         $totalEmployees = count($edit_employees);
