@@ -223,7 +223,7 @@ function validateInput($data)
             <table id="table_id" class="table-bordered w-100 text-center">
                 <tr>
                     <td colspan='11' class='text-center fw-bold'>
-                        <h5></h5><?php echo strtoupper($section) ?> Section Khyberpass Depot</h5>
+                        <h5><?php echo strtoupper($section) ?> Section Khyberpass Depot</h5>
                     </td>
                 </tr>
                 <tr>
@@ -232,7 +232,7 @@ function validateInput($data)
                         date_default_timezone_set('Asia/Kolkata');
                         $from = date('16-M-Y', strtotime('-1 month'));
                         $to = date("15-M-Y");
-                        echo "<h5></h5>Leave statements from $from to $to</h5>";
+                        echo "<h5>Leave statements from $from to $to</h5>";
                         ?>
 
                     </td>
