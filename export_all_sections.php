@@ -23,7 +23,7 @@ session_start();
             <table id="table_id" class="table-bordered w-100 text-center">
                 <tr>
                     <td colspan='11' class='text-center fw-bold'>
-                        <h5></h5>Absentee of Khyberpass Depot</h5>
+                        <h5>Absentee of Khyberpass Depot</h5>
                     </td>
                 </tr>
                 <tr>
@@ -32,7 +32,7 @@ session_start();
                         date_default_timezone_set('Asia/Kolkata');
                         $from = date('16-M-Y', strtotime('-1 month'));
                         $to = date("15-M-Y");
-                        echo "<h5></h5>From $from to $to</h5>";
+                        echo "<h5>From $from to $to</h5>";
                         ?>
                     </td>
                 </tr>
@@ -81,9 +81,9 @@ session_start();
                                 $verified = '';
                                 if ($verification == 1)
                                     $verified = 'text-success';
-                                $sub_dir  = $_SERVER['PHP_SELF'];
-                                $sub_dir = str_replace("export_statements.php", "", $sub_dir);
-                                $current_site = 'http://' . $_SERVER['SERVER_NAME'] . $sub_dir;
+                                //$sub_dir  = $_SERVER['PHP_SELF'];
+                                //$sub_dir = str_replace("export_statements.php", "", $sub_dir);
+                                //$current_site = 'http://' . $_SERVER['SERVER_NAME'] . $sub_dir;
                                 // $file_path = $current_site . "view_screenshot.php?section=$section&view_emp=" . $emp_num;
                                 $total_slots = count($leave_data);
                                 //officer name
@@ -146,7 +146,7 @@ session_start();
                         date_default_timezone_set('Asia/Kolkata');
                         $from = date('16-M-Y', strtotime('-1 month'));
                         $to = date("15-M-Y");
-                        echo "filename: \"" . ucfirst($section) . "_Absentee_" . $from . "_to_" . $to . ".xls\"";
+                        echo "filename: \"" . "Absentee_" . $from . "_to_" . $to . ".xls\"";
                         ?>
                     });
                 });
