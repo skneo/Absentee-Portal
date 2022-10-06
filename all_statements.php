@@ -27,7 +27,7 @@ function validateInput($data)
     <?php
     include 'header.php';
     //data verification
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['verify_data'])) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['verify_data']) && isset($_SESSION[$section . 'loggedin'])) {
         $emp_num = $_POST['verify_data'];
         $absentee = file_get_contents("$section/absentee.json");
         $absentee = json_decode($absentee, true);
@@ -42,7 +42,7 @@ function validateInput($data)
             </div>";
     }
     //delete
-    else if (isset($_POST['delete'])) {
+    else if (isset($_POST['delete']) && isset($_SESSION[$section . 'loggedin'])) {
         $emp_num = $_POST['delete'];
         $absentee = file_get_contents("$section/absentee.json");
         $absentee = json_decode($absentee, true);
@@ -77,7 +77,7 @@ function validateInput($data)
             </div>";
     }
     //lock
-    else if (isset($_POST['lock'])) {
+    else if (isset($_POST['lock']) && isset($_SESSION[$section . 'loggedin'])) {
         //saving section lock status 
         $lock = validateInput($_POST['lock']);
         $lockStatus = file_get_contents("lockStatus.json");

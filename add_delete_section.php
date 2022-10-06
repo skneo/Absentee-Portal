@@ -3,6 +3,7 @@ session_start();
 $section = $_GET['section'];
 if (!isset($_SESSION['adminloggedin'])) {
     header('Location: index.php');
+    exit;
 }
 
 ?>

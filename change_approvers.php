@@ -3,12 +3,16 @@ $section = $_GET['section'];
 $lockStatus = file_get_contents("lockStatus.json");
 $lockStatus = json_decode($lockStatus, true);
 if (array_key_exists($section, $lockStatus)) {
-    if ($lockStatus[$section] == 1)
+    if ($lockStatus[$section] == 1) {
         header("Location: all_statements.php?section=$section");
+        exit;
+    }
 }
 session_start();
-if (!( (isset($_SESSION['adminloggedin']) or isset($_SESSION[$section . 'loggedin']) ))) {
+// if (!((isset($_SESSION['adminloggedin']) or isset($_SESSION[$section . 'loggedin'])))) {
+if (!((isset($_SESSION['adminloggedin'])))) {
     header("Location: all_statements.php?section=$section");
+    exit;
 }
 ?>
 <!doctype html>

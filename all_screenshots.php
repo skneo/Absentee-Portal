@@ -3,6 +3,7 @@ $section = $_GET['section'];
 session_start();
 if (!isset($_SESSION['adminloggedin'])) {
     header("Location: index.php");
+    exit;
 }
 $showAlert = false;
 // if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
