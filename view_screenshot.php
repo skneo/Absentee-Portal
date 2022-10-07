@@ -80,14 +80,14 @@ session_start();
                 $employee_record = array();
                 array_push($employee_record, $emp_name);
                 $leave_data = array();
-                $total_rows = $_POST['total_rows'];
+                $total_rows = validateInput($_POST['total_rows']);
                 for ($i = 0; $i < $total_rows; $i++) {
                     $leave_type = "leave_type_" . $i;
                     $from = "from_" . $i;
                     $to = "to_" . $i;
                     if ($_POST[$leave_type] != 'NA' and $_POST[$from] != '' and $_POST[$to] != '') {
                         $row = array();
-                        array_push($row, $_POST[$from], $_POST[$to], $_POST[$leave_type]);
+                        array_push($row, validateInput($_POST[$from]), validateInput($_POST[$to]), validateInput($_POST[$leave_type]));
                         array_push($leave_data, $row);
                     }
                 }
@@ -121,13 +121,23 @@ session_start();
         $file_path   = $emp_data[2];
     }
     //change screenshot
-    else if (isset($_POST['changeScreenshot'])) {
+    else if (isset($_POST['changeScreenshot']) && isset($_SESSION[$section . 'loggedin'])) {
         date_default_timezone_set('Asia/Kolkata');
         $timeStamp = date('Ymd-His');
         $emp_num = $_GET['emp_num'];
         $temp = explode(".", $_FILES["newScreenshot"]["name"]);
         $newfilename = $emp_num . "-$timeStamp." . end($temp);
         $target_file = "$section/uploads/" . $newfilename;
+        $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        // check file type
+        if (!($file_type == 'jpg' or $file_type == 'jpeg' or $file_type == 'png')) {
+            echo "<div class='alert alert-danger alert-dismissible fade show py-2 mb-0' role='alert'>
+                <strong >Error, only .jpg , .jpeg and .png files are allowed to upload ! </strong>
+                <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>";
+            echo "<a href='all_statements.php?section=$section' class='btn btn-primary mt-3 ms-3'>&larr; Back</a>";
+            exit();
+        }
         if (move_uploaded_file($_FILES["newScreenshot"]["tmp_name"], $target_file)) {
             // $filename = htmlspecialchars(basename($_FILES["newScreenshot"]["name"]));
             $absentee = file_get_contents("$section/absentee.json");
@@ -147,7 +157,7 @@ session_start();
         }
     }
     //edit table
-    else if (isset($_POST['editTable'])) {
+    else if (isset($_POST['editTable']) && isset($_SESSION[$section . 'loggedin'])) {
         $absentee = file_get_contents("$section/absentee.json");
         $absentee = json_decode($absentee, true);
         $emp_num = $_POST['editTable'];
@@ -162,7 +172,7 @@ session_start();
                 $row = array();
                 // $fromdate = date("d.m.Y", strtotime($_POST[$from]));
                 // $todate = date("d.m.Y", strtotime($_POST[$to]));
-                array_push($row, $_POST[$from], $_POST[$to], $_POST[$leave_type]);
+                array_push($row, validateInput($_POST[$from]), validateInput($_POST[$to]), validateInput($_POST[$leave_type]));
                 array_push($leave_data, $row);
             }
         }
@@ -258,15 +268,8 @@ session_start();
                             </form>
                         </div>
                     </div>";
-            } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                echo "<p> If your data is not correct, delete it from below button and fill again. If data is correct you can close this tab </p>
-                    <form method='POST' action='all_statements.php?section=$section'>
-                    <button type='submit' onclick=\"return confirm('Sure to delete data of \'$emp_name\'?')\" class='btn btn-danger' name='delete' value='$emp_num'>Delete </button>
-                    </form>
-                    ";
             } else if ($lock == 1) {
                 echo "<p class='text-danger'>Data is locked</p>";
-                // $_SESSION['sectionLock'] = true;
             }
             ?>
         </div>
