@@ -30,6 +30,14 @@ if (array_key_exists($section, $lockStatus)) {
 <body>
     <?php
     include 'header.php';
+    if (strtolower($section) == 'admin') {
+        echo "<div class='alert alert-danger alert-dismissible fade show py-2 mb-0' role='alert'>
+                <strong >Error! Can not edit admin employees </strong>
+                <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>";
+        echo "<a href='fill_leaves.php?section=$section' class='btn btn-primary mt-3 ms-3'>&larr; Back</a>";
+        exit();
+    }
     ?>
     <div class="container my-3">
         <form method='POST' action='all_statements.php?section=<?php echo $section ?>'>

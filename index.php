@@ -47,7 +47,7 @@
                 ?>
             </div>
             <?php
-            echo "Total Employees: $totalEmployees (including ADMIN and TEST section)";
+            echo "Total Employees: $totalEmployees";
             ?>
         </center>
     </div>
