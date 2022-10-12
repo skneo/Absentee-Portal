@@ -18,7 +18,10 @@ session_start();
     include 'header.php';
     ?>
     <div class="container my-3">
-        <h4 class='fw-bold'>Leave statements of all sections employees</h4>
+        <div class="d-flex">
+            <h4 class='fw-bold me-5'>Leave statements of all sections employees</h4>
+            <button type="button" class="btn btn-primary " id='tableexport'>Export Table</button>
+        </div>
         <div class="my-3 container-fluid table-responsive">
             <table id="table_id" class="table-bordered w-100 text-center">
                 <tr>
@@ -137,7 +140,7 @@ session_start();
             </table>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script src="jquery.table2excel.min.js"></script>
-            <button type="button" class="btn btn-primary my-3" id='tableexport'>Export Table in Excel</button>
+            <!-- <button type="button" class="btn btn-primary my-3" id='tableexport'>Export Table</button> -->
             <script>
                 $('#tableexport').click(function() {
                     $("#table_id").table2excel({
