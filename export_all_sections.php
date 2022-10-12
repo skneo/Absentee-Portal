@@ -136,7 +136,7 @@ session_start();
                 </tbody>
             </table>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+            <script src="jquery.table2excel.min.js"></script>
             <button type="button" class="btn btn-primary my-3" id='tableexport'>Export Table in Excel</button>
             <script>
                 $('#tableexport').click(function() {

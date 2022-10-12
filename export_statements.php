@@ -91,7 +91,7 @@ session_start();
                                 $from = date("d-M-y", strtotime($row[0]));
                                 $to = date("d-M-y", strtotime($row[1]));
                                 $leave_type = $row[2];
-                                
+
                                 echo "<tr class='$verified'>
                                         <td>$sn </td>
                                         <td>$emp_num</td>
@@ -128,7 +128,7 @@ session_start();
                 </tbody>
             </table>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+            <script src="jquery.table2excel.min.js"></script>
             <button type="button" class="btn btn-primary my-3" id='tableexport'>Export Table in Excel</button>
             <script>
                 $('#tableexport').click(function() {
@@ -138,7 +138,7 @@ session_start();
                         date_default_timezone_set('Asia/Kolkata');
                         $from = date('16-M-Y', strtotime('-1 month'));
                         $to = date("15-M-Y");
-                        echo "filename: \"". strtoupper($section) . "_Absentee_" . $from . "_to_" . $to . ".xls\"";
+                        echo "filename: \"" . strtoupper($section) . "_Absentee_" . $from . "_to_" . $to . ".xls\"";
                         ?>
                     });
                 });
