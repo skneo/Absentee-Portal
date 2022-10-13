@@ -23,8 +23,7 @@ session_start();
         <p>Export table into excel by clicking on "Export Table" button. </p>
 
         <h4>Forgot password</h4>
-        <p>Default password is 0000, you can change it after login.</p>
-        <p>Contact HR to reset your password to 0000</p>
+        <p>Contact HR to reset your password </p>
 
         <h4>Features available after login</h4>
         <p>1. Verify and hightlight the absentee data submitted by employee </p>

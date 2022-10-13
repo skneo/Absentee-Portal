@@ -115,6 +115,13 @@ session_start();
         $emp_num = $_GET['view_emp'];
         $absentee = file_get_contents("$section/absentee.json");
         $absentee = json_decode($absentee, true);
+        if (!(array_key_exists($emp_num, $absentee))) {
+            echo "<div class='alert alert-danger py-2' role='alert'>
+                <strong >Error! record not found of employee number $emp_num  </strong>
+            </div>";
+            echo "<a href='all_statements.php?section=$section' class='btn btn-primary mt-3 ms-3'>&larr; Back</a>";
+            exit();
+        }
         $emp_data = $absentee[$emp_num];
         $emp_name = $emp_data[0];
         $leave_data   = $emp_data[1];
@@ -190,8 +197,12 @@ session_start();
     }
     ?>
     <div class='container mb-5'>
-        <a href="all_statements.php?section=<?php echo $section ?>" class="btn btn-primary btn-sm mt-2">&larr; Back</a>
         <?php
+        if ((isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin']))) {
+            echo "<a href='all_statements.php?section=$section' class='btn btn-primary btn-sm mt-2'>&larr; Back</a>";
+        } else {
+            echo "<a href='fill_leaves.php?section=$section' class='btn btn-primary btn-sm mt-2'>&larr; Back</a>";
+        }
         echo "<p class='mt-2'><b>Employee Name:</b> $emp_name <br> <b> Employee Number:</b> $emp_num</p>";
         ?>
         <b>ESS Screenshot</b>

@@ -47,6 +47,9 @@ $section = $_GET['section'];
             </div>";
     }
     ?>
+    <div id='jsalert' class='alert alert-success py-2' style="display: none;" role='alert'>
+        <strong>Leave statement submitted by all employees</strong>
+    </div>
     <div class='alert alert-info py-2' role='alert'>
         <strong>स्क्रीनशॉट Crop करके ही अपलोड करें <a target='_blank' href="sample.jpg">( सैंपल देखें )</a></strong>
     </div>
@@ -62,11 +65,14 @@ $section = $_GET['section'];
                     $employees = json_decode($employees, true);
                     $absentee = file_get_contents("$section/absentee.json");
                     $absentee = json_decode($absentee, true);
+                    $not_submitted = array();
                     for ($i = 0; $i < count($employees); $i++) {
                         $emp = $employees[$i];
                         $emp_num = trim(explode("-", $emp)[0]);
-                        if (array_key_exists($emp_num, $absentee))
+                        if (array_key_exists($emp_num, $absentee)) {
                             continue;
+                        }
+                        array_push($not_submitted, $employees[$i]);
                         echo "<option>$emp</option>";
                     }
                     ?>
@@ -161,6 +167,35 @@ $section = $_GET['section'];
                 <span class="sr-only"></span>
             </div>
         </div>
+
+        <!-- leave statement not submitted  -->
+        <div class="my-5" id='notSubmitted'>
+            <?php
+            if (count($not_submitted) != 0) {
+                echo " <hr>";
+                echo "<h5 class='text-danger'>Leave statement not submitted by below employees <span><button class='btn btn-outline-primary btn-sm' onclick='copyDivToClipboard()'>Copy Message</button></span></h5>";
+                for ($i = 1; $i <= count($not_submitted); $i++) {
+                    $emp = $not_submitted[$i - 1];
+                    echo "<b>$i.</b> $emp <br>";
+                }
+            } else {
+                echo "<script>
+                        document.getElementById('jsalert').style.display = 'block';
+                    </script>";
+            }
+            ?>
+        </div>
+        <script>
+            function copyDivToClipboard() {
+                var range = document.createRange();
+                range.selectNode(document.getElementById("notSubmitted"));
+                window.getSelection().removeAllRanges(); // clear current selection
+                window.getSelection().addRange(range); // to select text
+                document.execCommand("copy");
+                window.getSelection().removeAllRanges(); // to deselect
+                alert('Message copied to clip')
+            }
+        </script>
         <script>
             function validateFile() {
                 let fileSize = document.getElementById('fileToUpload').files[0].size / (1024);

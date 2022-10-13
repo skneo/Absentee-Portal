@@ -1,9 +1,10 @@
 <?php
 session_start();
-// if (!isset($_SESSION[$section . 'loggedin'])) {
-//     header('Location: index.php');
-// }
 $section = $_GET['section'];
+if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin']))) {
+    header("Location: login.php?section=$section");
+    exit;
+}
 function validateInput($data)
 {
     $data = trim($data);
