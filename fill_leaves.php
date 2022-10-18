@@ -218,6 +218,11 @@ $section = $_GET['section'];
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous'></script>
+    <?php
+    if (isset($_SESSION['adminloggedin'])) {
+        echo "<script>(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') return;w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1;js.src = \"https://cdn.webpushr.com/app.min.\";fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk'));webpushr('setup',{'key':'BO1cmyevzFd0zZtMTX6vPdBWCQsOh0rIp7ppuImPY1-WzfDk6NOpZlq3r_iMizmudV5S0-pswSO6tV7VgtFRfJs' });</script>";
+    }
+    ?>
 </body>
 
 </html>

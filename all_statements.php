@@ -180,7 +180,7 @@ function validateInput($data)
         );
         $sectionCap = strtoupper($section);
         $req_data = array(
-            'title'         => "Absentee data submitted by $sectionCap section", //required
+            'title'         => "Absentee submitted by $sectionCap section", //required
             'message'         => "View absentee data of $sectionCap by clicking on this notification", //required
             'target_url'    => "https://absentee.techtips.co.in/all_statements.php?section=$section", //required
             //following parameters are optional
