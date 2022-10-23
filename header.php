@@ -56,7 +56,7 @@
             } else {
                 echo "<div class='btn-group '>
                         <button id='userMenu' type='button' class='btn btn-success dropdown-toggle ' data-bs-toggle='dropdown' aria-expanded='false' value=''>
-                        Menu
+                        " . strtoupper($section) . "
                         </button>
                         <ul class='dropdown-menu dropdown-menu-lg-end'>
                         <li><a class='dropdown-item ' href='change_password.php?section=$section'>Change Password</a></li>
