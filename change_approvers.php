@@ -109,19 +109,19 @@ if (!((isset($_SESSION['adminloggedin'])))) {
                         <!--enctype="multipart/form-data"-->
                         <div class='mb-3'>
                             <label for='officerName' class='form-label float-start'>Approving Authority Name</label>
-                            <input type='text' class='form-control' id='officerName' name='officerName' required>
+                            <input type='text' class='form-control' id='officerName' name='officerName' value="<?php echo $officerName ?>"  required>
                         </div>
                         <div class='mb-3'>
                             <label for='inchargeName' class='form-label float-start'>Incharge Name</label>
-                            <input type='text' class='form-control' id='inchargeName' name='inchargeName' required>
+                            <input type='text' class='form-control' id='inchargeName' name='inchargeName' value="<?php echo $inchargeName ?>" required>
                         </div>
                         <div class='mb-3'>
                             <label for='inchargeEmpNo' class='form-label float-start'>Incharge Employee Number</label>
-                            <input type='text' class='form-control' id='inchargeEmpNo' name='inchargeEmpNo' required>
+                            <input type='text' class='form-control' id='inchargeEmpNo' name='inchargeEmpNo' value="<?php echo $inchargeEmpNo ?>" required>
                         </div>
                         <div class='mb-3'>
                             <label for='inchargeDesig' class='form-label float-start'>Incharge Designation</label>
-                            <input type='text' class='form-control' id='inchargeDesig' name='inchargeDesig' required>
+                            <input type='text' class='form-control' id='inchargeDesig' name='inchargeDesig' value="<?php echo $inchargeDesig ?>" required>
                         </div>
                         <!--<div class='mb-3'>-->
                         <!--    <label for='inchargeSign' class='form-label float-start'>Incharge Signature</label>-->
