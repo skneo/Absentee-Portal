@@ -20,6 +20,9 @@
                 if (isset($_SESSION['adminloggedin'])) {
                     echo "<li class='nav-item'>
                     <a class='nav-link active ' aria-current='page' href='edit_employees.php?section=$section'>Edit Employees</a>
+                    </li>
+                    <li class='nav-item'>
+                    <a class='nav-link active' aria-current='page' href='change_approvers.php?section=$section'>Change Approvers</a>
                     </li>";
                 }
 //                 else if (isset($_SESSION[$section . 'loggedin'])) {
@@ -43,7 +46,6 @@
                         <li><a href='unlock.php?section=admin' class='dropdown-item' >Lock/Unlock Data</a></li>
                         <li><a class='dropdown-item ' href='delete_statements.php?section=admin'>Delete Absentee Data</a></li>
                         <li><a href='all_screenshots.php?section=admin' class='dropdown-item'>Old Data</a></li>
-                        <li><a class='dropdown-item ' href='change_approvers.php?section=$section'>Change Approvers</a></li>
                         <li><a href='reset_password.php?section=admin' class='dropdown-item' >Reset others's Password</a></li>
                         <li><a class='dropdown-item ' href='add_delete_section.php?section=admin'>Add/Delete Section</a></li>
                         <li><a class='dropdown-item ' href='notifications.php?section=admin'>Enable Notifications</a></li>
