@@ -222,7 +222,7 @@ session_start();
         if (isset($_SESSION[$section . 'loggedin']) and $lock == 0) {
             echo "<a href='edit_record.php?section=$section&changeScreenshot=$emp_num' class='btn btn-info btn-sm ms-2'>Change </a>";
         }
-        echo "<div style='max-height:800px' class='overflow-auto'> <img src='$section/uploads/$file_path' style='width: 1080px' class='mt-2' alt='ESS Screenshot'></div>";
+        echo "<div style='max-height:800px' class='overflow-auto'> <img src='$section/uploads/$file_path' style='width: 1080px; border-radius: 20px;' class='mt-2' alt='ESS Screenshot'></div>";
         ?>
 
         <div class="my-3">
