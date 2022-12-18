@@ -310,7 +310,7 @@ function validateInput($data)
 
                                 if ($j == 0)
                                     echo "<td rowspan='$total_slots'>$officerName</td>
-                                          <td rowspan='$total_slots'><a href='$file_path'>View/Verify</a></td>";
+                                          <td rowspan='$total_slots'><a class='btn btn-outline-primary' href='$file_path'>View/Verify</a></td>";
                                 echo "</tr>";
                             }
                             if ($total_slots == 0) {
@@ -325,7 +325,7 @@ function validateInput($data)
                                       <td>NIL</td>
                                       <td>NIL</td>
                                       <td>$officerName</td>
-                                      <td><a href='$file_path'>View/Verify</a></td>";
+                                      <td><a class='btn btn-outline-primary' href='$file_path'>View/Verify</a></td>";
                                 echo "</tr>";
                             }
                             $sn = $sn + 1;
