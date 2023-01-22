@@ -8,7 +8,7 @@ if (isset($_SESSION[$section . 'loggedin'])) {
 include "$section/password.php";
 
 if (isset($_POST['password'])) {
-    if ($_POST['password'] == $password) {
+    if ($_POST['password'] === $password) {
         $_SESSION[$section . 'loggedin'] = true;
         if ($section == 'admin') {
             header("Location: fill_leaves.php?section=admin");
