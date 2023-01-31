@@ -2,7 +2,7 @@
 $section = $_GET['section'];
 session_start();
 if (!isset($_SESSION[$section . 'loggedin'])) {
-    header("Location: fill_leaves.php?section=$section");
+    header("Location: login.php?section=$section");
     exit;
 }
 function validateInput($data)

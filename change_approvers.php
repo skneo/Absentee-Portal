@@ -1,5 +1,11 @@
 <?php
 $section = $_GET['section'];
+session_start();
+// if (!((isset($_SESSION['adminloggedin']) or isset($_SESSION[$section . 'loggedin'])))) {
+if (!(isset($_SESSION['adminloggedin']))) {
+    header("Location: login.php?section=admin");
+    exit;
+}
 $lockStatus = file_get_contents("lockStatus.json");
 $lockStatus = json_decode($lockStatus, true);
 if (array_key_exists($section, $lockStatus)) {
@@ -7,12 +13,6 @@ if (array_key_exists($section, $lockStatus)) {
         header("Location: all_statements.php?section=$section");
         exit;
     }
-}
-session_start();
-// if (!((isset($_SESSION['adminloggedin']) or isset($_SESSION[$section . 'loggedin'])))) {
-if (!((isset($_SESSION['adminloggedin'])))) {
-    header("Location: all_statements.php?section=$section");
-    exit;
 }
 ?>
 <!doctype html>
@@ -109,7 +109,7 @@ if (!((isset($_SESSION['adminloggedin'])))) {
                         <!--enctype="multipart/form-data"-->
                         <div class='mb-3'>
                             <label for='officerName' class='form-label float-start'>Approving Authority Name</label>
-                            <input type='text' class='form-control' id='officerName' name='officerName' value="<?php echo $officerName ?>"  required>
+                            <input type='text' class='form-control' id='officerName' name='officerName' value="<?php echo $officerName ?>" required>
                         </div>
                         <div class='mb-3'>
                             <label for='inchargeName' class='form-label float-start'>Incharge Name</label>

@@ -2,7 +2,7 @@
 $section = $_GET['section'];
 session_start();
 if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin']))) {
-    header("Location: index.php");
+    header("Location: login.php?section=$section");
     exit;
 }
 $section_name = $section;
