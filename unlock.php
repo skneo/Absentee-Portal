@@ -27,12 +27,26 @@ if (isset($_POST['sectionName'])) {
                 <strong >All sections unlocked successfully </strong>
                 <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>";
+    } else if ($sectionName == 'all' and $dataLock == 'lock') {
+        $lockAll = array();
+        foreach (glob('./*', GLOB_ONLYDIR) as $dir) {
+            $dirname = basename($dir);
+            if ($dirname == '__MACOSX' || $dirname == 'zip_files')
+                continue;
+            else {
+                $lockAll[$dirname] = 1;
+            }
+        }
+        file_put_contents("lockStatus.json", json_encode($lockAll));
+        echo "<div class='alert alert-success alert-dismissible fade show py-2 mb-0' role='alert'>
+                <strong >All sections locked successfully </strong>
+                <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>";
     } else if ($sectionName != 'all') {
         $lockStatus = file_get_contents("lockStatus.json");
         $lockStatus = json_decode($lockStatus, true);
         $lockStatus[$sectionName] = $lockVar;
         file_put_contents("lockStatus.json", json_encode($lockStatus));
-        // include 'sendMail.php';
         echo "<div class='alert alert-success alert-dismissible fade show py-2 mb-0' role='alert'>
                 <strong >$sectionName section $lockMessage successfully </strong>
                 <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
@@ -48,7 +62,7 @@ if (isset($_POST['sectionName'])) {
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <!-- Bootstrap CSS -->
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
-    <title>Unlock Data</title>
+    <title>Lock/Unlock Data</title>
 </head>
 
 <body>
@@ -66,9 +80,8 @@ if (isset($_POST['sectionName'])) {
             </div>
             <div class='mb-3'>
                 <label for='' class='form-label float-start'>Select Section (select 'all' to unlock all)</label>
-
                 <select class='form-select' name='sectionName'>
-                    <option>Select</option>
+                    <option disabled selected value>Select</option>
                     <option>all</option>
                     <?php
                     foreach (glob('./*', GLOB_ONLYDIR) as $dir) {
@@ -80,7 +93,7 @@ if (isset($_POST['sectionName'])) {
                     ?>
                 </select>
             </div>
-            <button type='submit' class='btn btn-primary' onclick="return confirm('Sure to unlock?')">Submit</button>
+            <button type='submit' class='btn btn-primary' onclick="return confirm('Are you sure?')">Submit</button>
         </form>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
