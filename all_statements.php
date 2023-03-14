@@ -300,7 +300,7 @@ function validateInput($data)
                                 if ($j == 0)
                                     echo "<td rowspan='$total_slots'>$sn </td>
                                           <td rowspan='$total_slots'>$emp_num</td>
-                                          <td rowspan='$total_slots'>$emp_name </td>
+                                          <td rowspan='$total_slots'> <a class='$verified' href='$file_path'>$emp_name</a></td>
                                           <td rowspan='$total_slots'>REGULAR </td>";
                                 echo "<td>$leave_type</td>
                                       <td>$from</td>
@@ -317,7 +317,7 @@ function validateInput($data)
                                 echo "<tr class='$verified'>
                                       <td>$sn</td>
                                       <td>$emp_num</td>
-                                      <td>$emp_name</td>
+                                      <td><a class='$verified' href='$file_path'>$emp_name</a></td>
                                       <td>REGULAR</td>
                                       <td>NIL</td>
                                       <td>NIL</td>
