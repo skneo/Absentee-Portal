@@ -7,6 +7,7 @@ Features for section
 3. Delete the leave statement of individual employee.
 4. Lock data after verification
 5. Change login password.
+6. Default passowrd for section is 0000
 
 Features for admin
 1. Edit employees of all sections
@@ -17,3 +18,5 @@ Features for admin
 6. Reset other section's password
 7. View old data
 8. Add/delete section
+9. Default passowrd for admin is 'admin'
+10. In case forget password, then password can be found in password.php file inside 'admin' folder on hosting account
