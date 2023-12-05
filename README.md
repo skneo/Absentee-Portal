@@ -1,7 +1,7 @@
 # Absentee-Portal
 collects leave statements of all employees section wise
 
-Features for sections
+Features for section
 1. Verify and hightlight the absentee data submitted by employee
 2. Edit the data submited by employee.
 3. Delete the leave statement of individual employee.
@@ -17,4 +17,3 @@ Features for admin
 6. Reset other section's password
 7. View old data
 8. Add/delete section
-9. Get notification when a section locks and submit data
