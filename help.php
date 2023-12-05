@@ -23,15 +23,15 @@ session_start();
         <p>Export table into excel by clicking on "Export Table" button. </p>
 
         <h4>Forgot password</h4>
-        <p>Contact HR to reset your password </p>
-
+        <p>1. Contact admin to reset your password </p>
+        <p>2. In case admin forgets password, then password can be found in password.php file inside 'admin' folder on hosting account</p>
         <h4>Features available after login</h4>
         <p>1. Verify and hightlight the absentee data submitted by employee </p>
         <p>2. Edit the data submited by employee.</p>
         <p>3. Delete the leave statement of individual employee.</p>
         <p>4. Change login password.</p>
 
-        <i class="text-danger fs-5">Developer: satishkushwahdigital@gmail.com</i>
+        <a href="https://github.com/skneo/Absentee-Portal" target="_blank">Source Code</a>
 
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
