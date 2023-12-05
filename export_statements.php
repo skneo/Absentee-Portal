@@ -26,12 +26,12 @@ if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin'
         <div class="my-3 container-fluid table-responsive">
             <table id="table_id" class="table-bordered w-100 text-center">
                 <tr>
-                    <td colspan='11' class='text-center fw-bold'>
+                    <td colspan='10' class='text-center fw-bold'>
                         <h5><?php echo strtoupper($section) ?> Section Khyberpass Depot</h5>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan='11' class='text-center fw-bold'>
+                    <td colspan='10' class='text-center fw-bold'>
                         <?php
                         date_default_timezone_set('Asia/Kolkata');
                         $from = date('16-M-Y', strtotime('-1 month'));
@@ -41,7 +41,7 @@ if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin'
                     </td>
                 </tr>
                 <tr>
-                    <td colspan='11'> .</td>
+                    <td colspan='10'> .</td>
                 </tr>
                 <!--<thead>-->
                 <tr>
@@ -55,7 +55,6 @@ if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin'
                     <th>Approved</th>
                     <th>No of Days</th>
                     <th>Approving Authority Name</th>
-                    <th>ESS Screenshot</th>
                 </tr>
                 <!--</thead>-->
                 <tbody>
@@ -107,7 +106,6 @@ if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin'
                                         <td>YES</td>
                                         <td>$days</td>
                                         <td>$officerName</td>
-                                        <td><a href='$file_path'>View</a></td>
                                     </tr>";
                             }
                             if ($total_slots == 0) {
@@ -122,7 +120,6 @@ if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin'
                                       <td>NIL</td>
                                       <td>NIL</td>
                                       <td>$officerName</td>
-                                      <td><a href='$file_path'>View</a></td>
                                       </tr>";
                             }
                             $sn = $sn + 1;

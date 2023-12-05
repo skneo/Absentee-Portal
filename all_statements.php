@@ -170,42 +170,6 @@ function validateInput($data)
                 <strong >Data locked and submitted, don't forget to Export Table in Excel and Download All Screenshots </strong>
                 <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>";
-
-        //web push notification
-        $end_point = 'https://api.webpushr.com/v1/notification/send/all';
-        $http_header = array(
-            "Content-Type: Application/Json",
-            "webpushrKey: 05dfa90eda322294084342fdd1b8cafe",
-            "webpushrAuthToken: 40358"
-        );
-        $sectionCap = strtoupper($section);
-        $req_data = array(
-            'title'         => "Absentee submitted by $sectionCap section", //required
-            'message'         => "View absentee data of $sectionCap by clicking on this notification", //required
-            'target_url'    => "https://absentee.techtips.co.in/all_statements.php?section=$section", //required
-            //following parameters are optional
-            // 'name'		=> 'Test campaign',
-            // 'icon'		=> 'https://cdn.webpushr.com/siteassets/wSxoND3TTb.png',
-            // 'image'		=> 'https://cdn.webpushr.com/siteassets/aRB18p3VAZ.jpeg',
-            //'auto_hide'	=> 1,
-            //'expire_push'	=> '5m',
-            //'send_at'		=> '2022-01-04 10:47 +5:30',
-            //'action_buttons'=> array(	
-            //array('title'=> 'Demo', 'url' => 'https://www.webpushr.com/demo'),
-            //array('title'=> 'Rates', 'url' => 'https://www.webpushr.com/pricing')
-            //)
-        );
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $http_header);
-        curl_setopt($ch, CURLOPT_URL, $end_point);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($req_data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        $response = curl_exec($ch);
-        // echo $response;
-
     }
     ?>
     <div class="container my-3 mb-5">
@@ -253,7 +217,6 @@ function validateInput($data)
                     <th>Approved</th>
                     <th>No of Days</th>
                     <th>Approving Authority Name</th>
-                    <th>View/Verify Data</th>
                 </tr>
                 <!--</thead>-->
                 <tbody>
@@ -309,8 +272,7 @@ function validateInput($data)
                                       <td>$days</td>";
 
                                 if ($j == 0)
-                                    echo "<td rowspan='$total_slots'>$officerName</td>
-                                          <td rowspan='$total_slots'><a class='btn btn-outline-primary' href='$file_path'>View/Verify</a></td>";
+                                    echo "<td rowspan='$total_slots'>$officerName</td>";
                                 echo "</tr>";
                             }
                             if ($total_slots == 0) {
@@ -325,8 +287,7 @@ function validateInput($data)
                                       <td>NIL</td>
                                       <td>NIL</td>
                                       <td>$officerName</td>
-                                      <td><a class='btn btn-outline-primary' href='$file_path'>View/Verify</a></td>";
-                                echo "</tr>";
+                                    </tr>";
                             }
                             $sn = $sn + 1;
                         } else {
@@ -418,9 +379,6 @@ function validateInput($data)
                 alert('Message copied to clip')
             }
         </script>
-    </div>
-    <div class="text-center bg-dark text-light py-3 mt-5" style="margin-bottom: -300px;">
-        Developer: satishkushwahdigital@gmail.com
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous'></script>

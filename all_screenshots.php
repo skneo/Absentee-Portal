@@ -6,34 +6,6 @@ if (!isset($_SESSION['adminloggedin'])) {
     exit;
 }
 $showAlert = false;
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
-//     $target_dir = "$section/uploads/";
-//     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-//     $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-//     //check file type
-//     if ($file_type == 'htm' or $file_type == 'html' or $file_type == 'php' or $file_type == 'asp' or $file_type == 'aspx' or $file_type == 'jsp' or $file_type == 'htaccess') {
-//         $showAlert = true;
-//         $alertMsg =  "Sorry, this file type not allowed, upload it by making zip file.";
-//         $alertClass = "alert-danger";
-//     }
-//     // Check if file already exists
-//     else if (file_exists($target_file)) {
-//         $showAlert = true;
-//         $alertMsg =  "file of this name already exists, please change file name then try to upload";
-//         $alertClass = "alert-danger";
-//     } else {
-//         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-//             $filename = htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
-//             $showAlert = true;
-//             $alertMsg =  "The file $filename has been uploaded";
-//             $alertClass = "alert-success";
-//         } else {
-//             $showAlert = true;
-//             $alertMsg =  "Sorry, there was an error uploading your file.";
-//             $alertClass = "alert-danger";
-//         }
-//     }
-// }
 if (isset($_POST['delete'])) {
     $fileName = $_POST['delete'];
     $file = "zip_files/$fileName";
@@ -69,35 +41,11 @@ if (isset($_POST['delete'])) {
             </div>";
     }
     ?>
-    <!--<center>-->
-    <!--    <div class="container my-3 ">-->
-    <!--        <form action="all_screenshots.php?section=<?php echo $section ?>" method="post" enctype="multipart/form-data">-->
-    <!--            <h4>Select file to upload</h4>-->
-    <!--            <input class="form-control my-3" style="width: 300px;" type="file" name="fileToUpload" id="fileToUpload">-->
-    <!--            <input class="btn btn-primary" onclick="loader()" type="submit" style="width: 300px;" value="Upload File" name="submit">-->
-    <!--        </form>-->
-    <!--        <div class="d-flex justify-content-center my-3 d-none" id="pageLoader">-->
-    <!--            <div class="spinner-border" role="status">-->
-    <!--                <span class="sr-only"></span>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</center>-->
-    <!--<hr>-->
-    <!--<script>-->
-    <!--    var loader = function() {-->
-    <!--        document.getElementById('pageLoader').classList.remove('d-none');-->
-    <!--    }-->
-    <!--</script>-->
     <h4 class="text-center"><a href="all_screenshots.php?section=<?php echo $section ?>">All Files</a> </h4>
     <div class="container my-3">
         <?php
         date_default_timezone_set('Asia/Kolkata');
         $sn = 1;
-        // if (!is_dir("$section/uploads")) {
-        //     mkdir("$section/uploads");
-        //     file_put_contents("$section/uploads/index.php", "");
-        // }
         if ($handle = opendir("zip_files")) {
             echo "<table id='table_id' class='table-light table table-striped table-bordered w-100'>
                     <thead>
@@ -120,11 +68,6 @@ if (isset($_POST['delete'])) {
                     $filedownload = rawurlencode($file);
                     $size = round(filesize("zip_files/" . $file) / (1024));
                     $emp_num = explode('.', $file)[0];
-                    // $current_site = $_SERVER['SERVER_NAME'];
-                    // $sub_dir  = $_SERVER['PHP_SELF'];
-                    // $sub_dir = str_replace("all_screenshots.php", "", $sub_dir);
-                    // $fileurl = "http://$current_site" . $sub_dir . "uploads/$filedownload";
-
                     echo "<tr>
                                 <td>$sn</td>
                                 <td>$file</td>
@@ -138,19 +81,6 @@ if (isset($_POST['delete'])) {
                                 </div>    
                                 </td>
                             </tr>";
-                    // echo "<div class='my-3'> <b>$sn.</b> $file </div>    
-                    //       <div class='my-3'> <b>File Size:</b> $size kb <b>Uploaded On:</b> $dateTime </div>
-                    //       <div class='my-3 d-flex'>  
-                    //           <div >
-
-                    //             <a href=\"zip_files/$filedownload\" download class='btn btn-primary'>Download</a>
-                    //             </div>
-                    //             <div class='float-start'>
-                    //                 <form method='post' class='mx-3' action='all_screenshots.php?section=$section'>
-                    //                     <button onclick=\"return confirm('Sure to delete $file ?')\" type='submit' class='btn btn-danger' name='delete' value=\"$file\">Delete</button>
-                    //                 </form> 
-                    //             </div>
-                    //       </div><hr>";
                     $sn = $sn + 1;
                 }
             }
