@@ -85,7 +85,7 @@ session_start();
                     $leave_type = "leave_type_" . $i;
                     $from = "from_" . $i;
                     $to = "to_" . $i;
-                    if ($_POST[$leave_type] != 'NA' and $_POST[$from] != '' and $_POST[$to] != '') {
+                    if ($_POST[$leave_type] != 'No Leave' and $_POST[$from] != '' and $_POST[$to] != '') {
                         $row = array();
                         array_push($row, validateInput($_POST[$from]), validateInput($_POST[$to]), validateInput($_POST[$leave_type]));
                         array_push($leave_data, $row);
@@ -175,7 +175,7 @@ session_start();
             $leave_type = "leave_type_" . $i;
             $from = "from_" . $i;
             $to = "to_" . $i;
-            if ($_POST[$leave_type] != 'NA' and $_POST[$from] != '' and $_POST[$to] != '') {
+            if ($_POST[$leave_type] != 'No Leave' and $_POST[$from] != '' and $_POST[$to] != '') {
                 $row = array();
                 // $fromdate = date("d.m.Y", strtotime($_POST[$from]));
                 // $todate = date("d.m.Y", strtotime($_POST[$to]));

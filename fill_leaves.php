@@ -95,7 +95,7 @@ $section = $_GET['section'];
                             <td><input type='date' class='form-control' name='to_0'></td>
                             <td>
                                 <select class='form-select' name='leave_type_0'>
-                                    <option>NA</option>
+                                    <option>No Leave</option>
                                     <option>HALF CL</option>
                                     <option>CL</option>
                                     <option>LAP</option>
@@ -127,7 +127,7 @@ $section = $_GET['section'];
                                 <td><input type = 'date' class = 'form-control' name = 'to_${row}'></td>
                                 <td>
                                     <select class='form-select' name='leave_type_${row}'>
-                                        <option>NA</option>
+                                        <option>No Leave</option>
                                         <option>HALF CL</option>
                                         <option>CL</option>
                                         <option>LAP</option>

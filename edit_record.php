@@ -15,14 +15,12 @@ if (!isset($_SESSION[$section . 'loggedin'])) {
     <!-- Bootstrap CSS -->
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
     <title>Edit Record</title>
 </head>
 
 <body>
     <?php
     include 'header.php';
-
     ?>
     <div class='container my-3'>
         <?php
@@ -82,7 +80,6 @@ if (!isset($_SESSION[$section . 'loggedin'])) {
                                     <td>NIL</td>
                                     <td>NIL</td>
                                     <td>NIL</td>
-                                    <td>NIL</td>
                                 </tr>";
                     }
                     ?>
@@ -93,7 +90,7 @@ if (!isset($_SESSION[$section . 'loggedin'])) {
                 <div class='mb-3 table-responsive'>
                     <label for='emp_num' class='form-label float-start '>Leave Data <small class="form-text text-muted">( छुट्टी नहीं ली तो खाली छोड़ दें ) </small>
                     </label>
-
+                    <input type='text' name='total_rows' id='total_rows' value='1' hidden>
                     <table class="table-light table table-striped table-bordered w-100">
                         <thead>
                             <tr>
@@ -103,12 +100,14 @@ if (!isset($_SESSION[$section . 'loggedin'])) {
                             </tr>
                         </thead>
                         <tbody id='tbody'>
-                            <tr>
+                            <?php
+                            if ($total_slots == 0) {
+                                echo "<tr>
                                 <td><input type='date' class='form-control' name='from_0'></td>
                                 <td><input type='date' class='form-control' name='to_0'></td>
                                 <td>
                                     <select class='form-select' name='leave_type_0'>
-                                        <option>NA</option>
+                                        <option>No Leave</option>
                                         <option>HALF CL</option>
                                         <option>CL</option>
                                         <option>LAP</option>
@@ -128,19 +127,60 @@ if (!isset($_SESSION[$section . 'loggedin'])) {
                                     </select>
                                 </td>
                             </tr>
+                            <script>
+                                total_rows.value = 1;
+                            </script>";
+                            } else {
+                                for ($j = 0; $j < $total_slots; $j++) {
+                                    $row = $leave_data[$j];
+                                    $from = $row[0];
+                                    $to = $row[1];
+                                    $leave_type = $row[2];
+                                    echo "<tr>
+                                    <td><input type='date' class='form-control' name='from_$j' value='$from'></td>
+                                    <td><input type='date' class='form-control' name='to_$j' value='$from'></td>
+                                <td>
+                                    <select class='form-select' name='leave_type_$j' id='leave_type_$j'>
+                                        <option>No Leave</option>
+                                        <option>HALF CL</option>
+                                        <option>CL</option>
+                                        <option>LAP</option>
+                                        <option>RH</option>
+                                        <option>LHAP (Com.)</option>
+                                        <option>LHAP (Half)</option>
+                                        <option>PL</option>
+                                        <option>ML</option>
+                                        <option>CCL</option>
+                                        <option>SCL</option>
+                                        <option>IOD</option>
+                                        <option>QRTL</option>
+                                        <option>EOL</option>
+                                        <option>LWP</option>
+                                        <option>LND</option>
+                                        <option>OTHER</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <script>leave_type_$j.value = '$leave_type';</script>
+                            ";
+                                }
+                                echo "<script>
+                            total_rows.value = $total_slots;
+                            </script>";
+                            }
+                            ?>
                         </tbody>
                     </table>
-                    <input type='text' name='total_rows' id='total_rows' value='1' hidden>
                     <buttton class="btn btn-info btn-sm" id='add_row'>Add Row</buttton>
                     <script>
-                        var row = 1;
+                        var row = parseInt(total_rows.value);
                         $("#add_row").click(function() {
                             $("#tbody").append(`<tr>
                                 <td><input type = 'date' class = 'form-control' name = 'from_${row}'></td>
                                 <td><input type = 'date' class = 'form-control' name = 'to_${row}'></td>
                                 <td>
                                     <select class='form-select' name='leave_type_${row}'>
-                                        <option>NA</option>
+                                        <option>No Leave</option>
                                         <option>HALF CL</option>
                                         <option>CL</option>
                                         <option>LAP</option>
