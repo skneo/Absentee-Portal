@@ -46,6 +46,9 @@ $section = $_GET['section'];
                 <button type='button' class='btn-close pb-2' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>";
     }
+    date_default_timezone_set('Asia/Kolkata');
+    $min_date=date('Y-m-16', strtotime('-1 month'));
+    $max_date=date('Y-m-15');
     ?>
     <div id='jsalert' class='alert alert-success py-2' style="display: none;" role='alert'>
         <strong>Leave statement submitted by all employees</strong>
@@ -91,8 +94,8 @@ $section = $_GET['section'];
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type='date' class='form-control' name='from_0'></td>
-                            <td><input type='date' class='form-control' name='to_0'></td>
+                            <td><input type='date' class='form-control' name='from_0' onchange="document.getElementsByName('to_0')[0].value = this.value" min="<?php echo $min_date ?>" max="<?php echo $max_date ?>"></td>
+                            <td><input type='date' class='form-control' name='to_0' min="<?php echo $min_date ?>" max="<?php echo $max_date?>"></td>
                             <td>
                                 <select class='form-select' name='leave_type_0'>
                                     <option>No Leave</option>
@@ -123,8 +126,8 @@ $section = $_GET['section'];
                     var row = 1;
                     $("#add_row").click(function() {
                         $("tbody").append(`<tr>
-                                <td><input type = 'date' class = 'form-control' name = 'from_${row}'></td>
-                                <td><input type = 'date' class = 'form-control' name = 'to_${row}'></td>
+                                <td><input type = 'date' class = 'form-control' name = 'from_${row}' onchange="document.getElementsByName('to_${row}')[0].value = this.value" min="<?php echo $min_date ?>" max="<?php echo $max_date?>"></td>
+                                <td><input type = 'date' class = 'form-control' name = 'to_${row}' min="<?php echo $min_date ?>" max="<?php echo $max_date?>"></td>
                                 <td>
                                     <select class='form-select' name='leave_type_${row}'>
                                         <option>No Leave</option>

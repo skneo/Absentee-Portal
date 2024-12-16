@@ -200,13 +200,14 @@ function validateInput($data)
                     <th>SN</th>
                     <th>Employee Number</th>
                     <th style='min-width:150px'>Employee Name</th>
-                    <th>Type</th>
+                    <th>Status</th>
                     <th>Leave Type</th>
                     <th style='min-width:100px'>Leave From</th>
                     <th style='min-width:100px'>Leave Upto</th>
-                    <th>Approved</th>
                     <th>No of Days</th>
-                    <th>Approving Authority Name</th>
+                    <th>Applied on ESS</th>
+                    <th>Approved</th>
+                    <th>Approving Authority</th>
                 </tr>
                 <!--</thead>-->
                 <tbody>
@@ -258,8 +259,9 @@ function validateInput($data)
                                 echo "<td>$leave_type</td>
                                       <td>$from</td>
                                       <td>$to</td>
+                                      <td>$days</td>
                                       <td>YES</td>
-                                      <td>$days</td>";
+                                      <td>YES</td>";
 
                                 if ($j == 0)
                                     echo "<td rowspan='$total_slots'>$officerName</td>";
@@ -271,6 +273,7 @@ function validateInput($data)
                                       <td>$emp_num</td>
                                       <td><a class='$verified' href='$file_path'>$emp_name</a></td>
                                       <td>REGULAR</td>
+                                      <td>NIL</td>
                                       <td>NIL</td>
                                       <td>NIL</td>
                                       <td>NIL</td>

@@ -26,12 +26,12 @@ if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin'
         <div class="my-3 container-fluid table-responsive">
             <table id="table_id" class="table-bordered w-100 text-center">
                 <tr>
-                    <td colspan='10' class='text-center fw-bold'>
+                    <td colspan='11' class='text-center fw-bold'>
                         <h5><?php echo strtoupper($section) ?> Section Khyberpass Depot</h5>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan='10' class='text-center fw-bold'>
+                    <td colspan='11' class='text-center fw-bold'>
                         <?php
                         date_default_timezone_set('Asia/Kolkata');
                         $from = date('16-M-Y', strtotime('-1 month'));
@@ -41,20 +41,21 @@ if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin'
                     </td>
                 </tr>
                 <tr>
-                    <td colspan='10'> .</td>
+                    <td colspan='11'> .</td>
                 </tr>
                 <!--<thead>-->
                 <tr>
                     <th>SN</th>
                     <th>Employee Number</th>
                     <th style='min-width:150px'>Employee Name</th>
-                    <th>Type</th>
+                    <th>Status</th>
                     <th>Leave Type</th>
                     <th style='min-width:100px'>Leave From</th>
                     <th style='min-width:100px'>Leave Upto</th>
-                    <th>Approved</th>
                     <th>No of Days</th>
-                    <th>Approving Authority Name</th>
+                    <th>Applied on ESS</th>
+                    <th>Approved</th>
+                    <th>Approving Authority</th>
                 </tr>
                 <!--</thead>-->
                 <tbody>
@@ -103,8 +104,9 @@ if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin'
                                         <td>$leave_type</td>
                                         <td>$from</td>
                                         <td>$to</td>
-                                        <td>YES</td>
                                         <td>$days</td>
+                                        <td>YES</td>
+                                        <td>YES</td>
                                         <td>$officerName</td>
                                     </tr>";
                             }
@@ -114,6 +116,7 @@ if (!(isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin'
                                       <td>$emp_num</td>
                                       <td>$emp_name</td>
                                       <td>REGULAR</td>
+                                      <td>NIL</td>
                                       <td>NIL</td>
                                       <td>NIL</td>
                                       <td>NIL</td>

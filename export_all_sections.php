@@ -51,13 +51,14 @@ if (!(isset($_SESSION['adminloggedin']))) {
                     <th>SN</th>
                     <th>Employee Number</th>
                     <th style='min-width:150px'>Employee Name</th>
-                    <th>Type</th>
+                    <th>Status</th>
                     <th>Leave Type</th>
                     <th style='min-width:100px'>Leave From</th>
                     <th style='min-width:100px'>Leave Upto</th>
-                    <th>Approved</th>
                     <th>No of Days</th>
-                    <th>Approving Authority Name</th>
+                    <th>Applied on ESS</th>
+                    <th>Approved</th>
+                    <th>Approving Authority</th>
                     <!-- <th>ESS Screenshot</th> -->
                 </tr>
                 <!--</thead>-->
@@ -113,8 +114,9 @@ if (!(isset($_SESSION['adminloggedin']))) {
                                         <td>$leave_type</td>
                                         <td>$from</td>
                                         <td>$to</td>
-                                        <td>YES</td>
                                         <td>$days</td>
+                                        <td>YES</td>
+                                        <td>YES</td>
                                         <td>$officerName</td>
                                         
                                     </tr>";
@@ -126,6 +128,7 @@ if (!(isset($_SESSION['adminloggedin']))) {
                                       <td>$emp_num</td>
                                       <td>$emp_name</td>
                                       <td>REGULAR</td>
+                                      <td>NIL</td>
                                       <td>NIL</td>
                                       <td>NIL</td>
                                       <td>NIL</td>
