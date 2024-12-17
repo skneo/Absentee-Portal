@@ -94,8 +94,8 @@ $section = $_GET['section'];
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type='date' class='form-control' name='from_0' onchange="document.getElementsByName('to_0')[0].value = this.value" min="<?php echo $min_date ?>" max="<?php echo $max_date ?>"></td>
-                            <td><input type='date' class='form-control' name='to_0' min="<?php echo $min_date ?>" max="<?php echo $max_date?>"></td>
+                            <td><input type='date' class='form-control' id='from_0' name='from_0' onchange="to_0.value = this.value; to_0.min = this.value" min="<?php echo $min_date ?>" max="<?php echo $max_date ?>"></td>
+                            <td><input type='date' class='form-control' id='to_0' name='to_0' min="<?php echo $min_date ?>" max="<?php echo $max_date?>"></td>
                             <td>
                                 <select class='form-select' name='leave_type_0'>
                                     <option>No Leave</option>
@@ -126,8 +126,8 @@ $section = $_GET['section'];
                     var row = 1;
                     $("#add_row").click(function() {
                         $("tbody").append(`<tr>
-                                <td><input type = 'date' class = 'form-control' name = 'from_${row}' onchange="document.getElementsByName('to_${row}')[0].value = this.value" min="<?php echo $min_date ?>" max="<?php echo $max_date?>"></td>
-                                <td><input type = 'date' class = 'form-control' name = 'to_${row}' min="<?php echo $min_date ?>" max="<?php echo $max_date?>"></td>
+                                <td><input type = 'date' class = 'form-control' id='from_${row}' name = 'from_${row}' onchange="to_${row}.value = this.value; to_${row}.min = this.value" min="<?php echo $min_date ?>" max="<?php echo $max_date?>"></td>
+                                <td><input type = 'date' class = 'form-control' id='to_${row}' name = 'to_${row}' min="<?php echo $min_date ?>" max="<?php echo $max_date?>"></td>
                                 <td>
                                     <select class='form-select' name='leave_type_${row}'>
                                         <option>No Leave</option>
@@ -176,7 +176,7 @@ $section = $_GET['section'];
             <?php
             if (count($not_submitted) != 0) {
                 echo " <hr>";
-                echo "<h5 class='text-danger'>Leave statement not submitted by below employees <span><button class='btn btn-outline-primary btn-sm' onclick='copyDivToClipboard()'>Copy Message</button></span></h5>";
+                echo "<h5 class='text-danger'>Leave statement not submitted by following employees <span><button class='btn btn-outline-primary btn-sm' onclick='copyDivToClipboard()'>Copy Message</button></span></h5>";
                 for ($i = 1; $i <= count($not_submitted); $i++) {
                     $emp = $not_submitted[$i - 1];
                     echo "<b>$i.</b> $emp <br>";

@@ -353,7 +353,7 @@ function validateInput($data)
         <div class="my-3" id='notSubmitted'>
             <?php
             if (count($not_submitted) != 0) {
-                echo "<h5 class='text-danger'>Leave statement not submitted by below employees <span><button class='btn btn-outline-primary btn-sm' onclick='copyDivToClipboard()'>Copy Message</button></span></h5>";
+                echo "<h5 class='text-danger'>Leave statement not submitted by following employees <span><button class='btn btn-outline-primary btn-sm' onclick='copyDivToClipboard()'>Copy Message</button></span></h5>";
                 for ($i = 1; $i <= count($not_submitted); $i++) {
                     $emp = $not_submitted[$i - 1];
                     echo "<b>$i.</b> $emp <br>";

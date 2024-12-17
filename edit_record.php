@@ -26,7 +26,7 @@ if (!isset($_SESSION[$section . 'loggedin'])) {
         <?php
         if (isset($_GET['changeScreenshot'])) {
             $emp_num = $_GET['changeScreenshot'];
-            echo "<a href='view_screenshot.php?section=$section&view_emp=$emp_num' class='btn btn-primary btn-sm mb-3'><- Back</a>
+            echo "<a href='view_screenshot.php?section=$section&view_emp=$emp_num' class='btn btn-primary btn-sm mb-3'>&larr; Back</a>
                  <h4>Edit Record</h4>";
             echo "<p>Enployee Number: $emp_num</p>
                     <form method='POST' action='view_screenshot.php?section=$section&emp_num=$emp_num' enctype=\"multipart/form-data\">
@@ -41,7 +41,7 @@ if (!isset($_SESSION[$section . 'loggedin'])) {
         //edit table
         if (isset($_GET['editTable'])) {
             $emp_num = $_GET['editTable'];
-            echo "<a href='view_screenshot.php?section=$section&view_emp=$emp_num' class='btn btn-primary btn-sm mb-3'><- Back</a>
+            echo "<a href='view_screenshot.php?section=$section&view_emp=$emp_num' class='btn btn-primary btn-sm mb-3'>&larr; Back</a>
                  <p>Enployee Number: $emp_num</p>";
         }
         ?>
@@ -64,7 +64,7 @@ if (!isset($_SESSION[$section . 'loggedin'])) {
                         $emp_data = $absentee[$emp_num];
                         $leave_data   = $emp_data[1];
                         $total_slots = count($leave_data);
-                        for ($j = ($total_slots - 1); $j >= 0; $j--) {
+                        for ($j = 0; $j < $total_slots; $j++) {
                             $row = $leave_data[$j];
                             $from = date("d-M-y", strtotime($row[0]));
                             $to = date("d-M-y", strtotime($row[1]));
